@@ -1,0 +1,16 @@
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+nmap <F6> :NERDTreeToggle<CR>
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+let g:airline_powerline_fonts = 1
+set laststatus=2
+let g:airline_theme='luna'
+set encoding=UTF-8 
+set guifont=FiraCode\ NF\ 11
+
