@@ -132,8 +132,6 @@ alias gcl="git clone"
 alias gst="git status"
 alias gback="git checkout origin/master -- "
 
-alias roktlaunch="~/scripts/werkdae.sh"
-
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
