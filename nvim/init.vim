@@ -49,7 +49,7 @@ Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+""Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
 " Plug 'ryanoasis/vim-devicons' Icons without colours
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
@@ -58,12 +58,12 @@ Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 " lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
 " Need to **configure separately**
 
-Plug 'zchee/deoplete-jedi' " Python autocompletion
-Plug 'tell-k/vim-autopep8' "autopep8
-Plug 'davidhalter/jedi-vim' " Just to add the python go-to-definition and similar features, autocompletion
-Plug 'Shougo/deoplete.nvim' "Async autocompletion
-Plug 'ncm2/ncm2'  " awesome autocomplete plugin
-Plug 'ncm2/ncm2-bufword'  " buffer keyword completion
+"Plug 'zchee/deoplete-jedi' " Python autocompletion
+"Plug 'tell-k/vim-autopep8' "autopep8
+"Plug 'davidhalter/jedi-vim' " Just to add the python go-to-definition and similar features, autocompletion
+"Plug 'Shougo/deoplete.nvim' "Async autocompletion
+"Plug 'ncm2/ncm2'  " awesome autocomplete plugin
+"Plug 'ncm2/ncm2-bufword'  " buffer keyword completion
 
 " Unmanaged plugin (manually installed and updated)
 Plug '~/my-prototype-plugin'
