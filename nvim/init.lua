@@ -4,4 +4,5 @@ require("goto")
 require("mappings")
 require("airline")
 require("golang")
-
+require("python_lsp")
+require("avante_config")

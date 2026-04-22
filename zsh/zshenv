@@ -1,0 +1,5 @@
+# pm-terminal-config — zshenv
+# Runs for every zsh invocation (interactive and non-interactive).
+
+# Rust / Cargo
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
