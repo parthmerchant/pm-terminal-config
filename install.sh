@@ -40,7 +40,37 @@ fi
 
 # 2. Core packages
 log "Installing core packages via brew"
-brew install git zsh neovim nvm oh-my-posh fzf jq coreutils || warn "some brew packages may already be installed"
+# Terminal essentials + LSP + dev toolchain + language runtimes.
+BREW_FORMULAE=(
+  git zsh neovim nvm oh-my-posh fzf jq coreutils wget
+  node python@3.12
+  pyright            # Python LSP (used by nvim/lua/python_lsp.lua)
+  kubectl
+  terraform
+  awscli
+)
+brew install "${BREW_FORMULAE[@]}" || warn "some brew packages may already be installed"
+
+# Casks: GUI apps + fonts. Docker Desktop provides the `docker` CLI.
+BREW_CASKS=(
+  docker
+  font-fira-code-nerd-font
+)
+for cask in "${BREW_CASKS[@]}"; do
+  brew install --cask "$cask" || warn "cask $cask may already be installed or require manual approval"
+done
+
+# Claude Code CLI (requires node from the brew step above).
+if command -v npm >/dev/null 2>&1; then
+  if ! command -v claude >/dev/null 2>&1; then
+    log "Installing Claude Code CLI"
+    npm install -g @anthropic-ai/claude-code || warn "claude-code install failed — check npm permissions"
+  else
+    log "claude-code present"
+  fi
+else
+  warn "npm not on PATH after brew install; skipping claude-code"
+fi
 
 # 3. oh-my-zsh (unattended)
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
