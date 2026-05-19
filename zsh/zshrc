@@ -1,6 +1,10 @@
 # pm-terminal-config — zsh
 # Dependencies (provisioned by install.sh):
-#   - oh-my-zsh, znap, oh-my-posh, nvm, fzf
+#   - oh-my-zsh, znap, oh-my-posh, nvm, fzf, kubectx, k9s, golang, awscli, terraform
+
+# Locale for Nerd Font rendering in terminal
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # znap (cloned by install.sh to ~/Repos/znap)
 [ -s "$HOME/Repos/znap/znap.zsh" ] && source "$HOME/Repos/znap/znap.zsh"
@@ -13,7 +17,7 @@ plugins=(git)
 
 # oh-my-posh prompt
 command -v oh-my-posh >/dev/null 2>&1 && \
-  eval "$(oh-my-posh init zsh --config "$HOME/poshconfig/pm2.json")"
+  eval "$(oh-my-posh init zsh --config "$HOME/PM/pm-terminal-config/posh/pm2.json")"
 
 # Secrets (API keys, tokens) live in ~/.zshrc.secrets.
 # That file is NEVER committed — create it locally with chmod 600 and export
@@ -33,6 +37,8 @@ alias zsrc="source ~/.zshrc"
 alias k="kubectl"
 alias kns="kubens"
 alias kx="kubectl exec -it"
+alias kctx="kubectx"
+alias k9s="k9s"
 
 # ---- Docker ----
 alias d="docker"
@@ -78,8 +84,11 @@ alias b64er='function _b64er() {echo -n "$1" | xxd -r -p | openssl base64; }; _b
 # ---- Terraform ----
 alias tfmt="terraform fmt -recursive ."
 
-# ---- Prompt + autocomplete plugin ----
-export PS1=' %F{white}$(pwd)%f 💎%F{cyan}$(parse_git_branch)%f <?> '
+# Claude
+alias claude="claude --dangerously-skip-permissions"
+
+# ---- Autocomplete plugin ----
+# Prompt is handled by oh-my-posh above
 command -v znap >/dev/null 2>&1 && znap source marlonrichert/zsh-autocomplete
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
@@ -105,3 +114,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # fzf
 [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+
+# opencode
+export PATH=/Users/parthmerchant/.opencode/bin:$PATH
+export PATH="$HOME/.local/go/bin:$PATH"

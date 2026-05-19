@@ -45,11 +45,31 @@ BREW_FORMULAE=(
   git zsh neovim nvm oh-my-posh fzf jq coreutils wget
   node python@3.12
   pyright            # Python LSP (used by nvim/lua/python_lsp.lua)
-  kubectl
+  kubectl kubectx k9s
   terraform
   awscli
+  go                 # Golang (or see below for source-based installation)
 )
 brew install "${BREW_FORMULAE[@]}" || warn "some brew packages may already be installed"
+
+# Optional: Install Golang from source. Uncomment the section below to use.
+# Note: This is an alternative to the brew-installed golang above.
+# BUILD_GO_FROM_SOURCE=${BUILD_GO_FROM_SOURCE:-false}
+# if [[ "$BUILD_GO_FROM_SOURCE" == "true" ]]; then
+#   log "Building Golang from source"
+#   GO_VERSION="1.24.13"
+#   GO_SRC_URL="https://go.dev/dl/go${GO_VERSION}.src.tar.gz"
+#   GO_BUILD_DIR="/tmp/go-build-${GO_VERSION}"
+#   mkdir -p "$GO_BUILD_DIR"
+#   cd "$GO_BUILD_DIR"
+#   curl -sL -o go.src.tar.gz "$GO_SRC_URL"
+#   tar -xzf go.src.tar.gz
+#   cd go/src && ./all.bash || warn "golang source build failed"
+#   mkdir -p ~/.local/go
+#   cp -r ../go/* ~/.local/go/
+#   export PATH="$HOME/.local/go/bin:$PATH"
+#   log "Golang ${GO_VERSION} built and installed to ~/.local/go"
+# fi
 
 # Casks: GUI apps + fonts. Docker Desktop provides the `docker` CLI.
 BREW_CASKS=(
