@@ -26,6 +26,11 @@ command -v oh-my-posh >/dev/null 2>&1 && \
 #   export DD_API_KEY='...'
 [ -f "$HOME/.zshrc.secrets" ] && source "$HOME/.zshrc.secrets"
 
+# aws — credentials are NOT hardcoded here. Use one of:
+#   - an instance role / SSO (preferred on servers), or
+#   - `aws configure` (~/.aws/credentials), or
+#   - export keys from ~/.zshrc.secrets (chmod 600, never committed).
+
 # ---- Convenience ----
 alias ssaver="/usr/local/bin/pipes.sh -t 0"
 alias weather="curl wttr.in/New+York+City"
@@ -34,11 +39,13 @@ alias bk="cd .. && clear"
 alias zsrc="source ~/.zshrc"
 
 # ---- Kubernetes ----
-alias k="kubectl"
+export DASHGEN_KUBECONFIG="$HOME/.kube/dashgen-cluster.yaml"
+alias k="kubectl --kubeconfig=$DASHGEN_KUBECONFIG"
+alias k9s="k9s --kubeconfig=$DASHGEN_KUBECONFIG"
 alias kns="kubens"
-alias kx="kubectl exec -it"
+alias kx="kubectl --kubeconfig=$DASHGEN_KUBECONFIG exec -it"
 alias kctx="kubectx"
-alias k9s="k9s"
+alias kconnect="~/dashgen-tunnel.sh"
 
 # ---- Docker ----
 alias d="docker"
